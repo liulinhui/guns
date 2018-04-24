@@ -1,4 +1,4 @@
-var news = {
+var News = {
     id: "newsTable",	//表格id
     seItem: null,		//选中的条目
     table: null,
@@ -9,7 +9,7 @@ var news = {
 /**
  * 初始化表格的列
  */
-news.initColumn = function () {
+News.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
@@ -26,7 +26,7 @@ news.initColumn = function () {
 /**
  * 检查是否选中
  */
-news.check = function () {
+News.check = function () {
     var selected = $('#' + this.id).bootstrapTable('getSelections');
     if (selected.length === 0) {
         Feng.info("请先选中表格中的某一记录！");
@@ -37,11 +37,18 @@ news.check = function () {
     }
 };
 
+/**
+ * 添加新闻
+ */
+News.openAddNews = function () {
+    window.open("/news/add",'_blank');
+}
+
 
 $(function () {
-    var defaultColunms = news.initColumn();
-    var table = new BSTable(news.id, "/news/list", defaultColunms);
+    var defaultColunms = News.initColumn();
+    var table = new BSTable(News.id, "/news/list", defaultColunms);
     // table.setPaginationType("client");
     table.init();
-    news.table = table;
+    News.table = table;
 });

@@ -6,11 +6,11 @@
 guns:
   swagger-open: true #是否开启swagger (true/false)
   kaptcha-open: false #是否开启登录时验证码 (true/false)
-  session-open: false #是否开启session超时验证（受影响的类SessionTimeoutInterceptor） (true/false)
+  session-open: true #是否开启session超时验证（受影响的类SessionTimeoutInterceptor） (true/false)
   #file-upload-path: d:/tmp  #文件上传目录(不配置的话为java.io.tmpdir目录)
   muti-datasource-open: false #是否开启多数据源(true/false)
   spring-session-open: false #是否开启spring session,如果是多机环境需要开启(true/false)
-  session-invalidate-time: 1800 #session失效时间(只在单机环境下生效，多机环境在SpringSessionConfig类中配置) 单位：秒
+  session-invalidate-time: 18000 #session失效时间(只在单机环境下生效，多机环境在SpringSessionConfig类中配置) 单位：秒
   session-validation-interval: 900 #多久检测一次失效的session(只在单机环境下生效) 单位：秒
 
 ###################  项目启动端口  ###################
@@ -39,7 +39,6 @@ beetl:
   resource-tagroot: common/tags   #自定义标签文件Root目录和后缀
   resource-tagsuffix: tag
   resource-auto-check: true #是否检测文件变化,开发用true合适，但线上要改为false
-
 
 ###################  spring配置  ###################
 spring:
@@ -91,6 +90,10 @@ logging:
   path: logs/
   file: guns.log
 
+upload:
+  path: /home/liulh/Documents/htcImages/  #文件存储nginx的静态服务器位置
+  url: http://127.0.0.1/htcImages/        #图片访问链接
+
 ---
 
 ##########################################################
@@ -109,3 +112,6 @@ logging:
   path: logs/
   file: guns.log
 
+upload:
+  path: /home/liulh/Documents/htcImages/  #文件存储nginx的静态服务器位置
+  url: http://127.0.0.1/htcImages/        #图片访问链接
