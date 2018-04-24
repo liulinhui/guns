@@ -101,4 +101,32 @@ public class NewsController extends BaseController {
         return jsonObject;
     }
 
+    /**
+     * 插入新闻
+     *
+     * @param news
+     * @return
+     */
+    @RequestMapping("/insertNews")
+    @ResponseBody
+    public JSONObject insertNews(News news) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status", newsMapper.insert(news));
+        return jsonObject;
+    }
+
+    /**
+     * 更新新闻
+     *
+     * @param news
+     * @return
+     */
+    @RequestMapping("/updateNews")
+    @ResponseBody
+    public JSONObject updateNews(News news) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status", newsMapper.updateByPrimaryKey(news));
+        return jsonObject;
+    }
+
 }
