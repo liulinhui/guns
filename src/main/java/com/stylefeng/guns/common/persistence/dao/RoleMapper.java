@@ -3,6 +3,7 @@ package com.stylefeng.guns.common.persistence.dao;
 import com.stylefeng.guns.common.node.ZTreeNode;
 import com.stylefeng.guns.common.persistence.model.Role;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.Map;
  * @author stylefeng
  * @since 2017-07-11
  */
+@Repository
 public interface RoleMapper extends Mapper<Role> {
 
     /**

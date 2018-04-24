@@ -1,6 +1,7 @@
 package com.stylefeng.guns.common.persistence.dao;
 
 import com.stylefeng.guns.common.persistence.model.Relation;
+import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
 
 /**
@@ -11,6 +12,7 @@ import tk.mybatis.mapper.common.Mapper;
  * @author stylefeng
  * @since 2017-07-11
  */
+@Repository
 public interface RelationMapper extends Mapper<Relation> {
 
 }
