@@ -1,7 +1,6 @@
 package com.stylefeng.guns.core.template.engine.base;
 
 import com.stylefeng.guns.core.util.ToolUtil;
-import com.sun.javafx.PlatformUtil;
 import org.beetl.core.Configuration;
 import org.beetl.core.GroupTemplate;
 import org.beetl.core.Template;
@@ -54,20 +53,30 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
     public void generateFile(String template,String filePath){
         Template pageTemplate = groupTemplate.getTemplate(template);
         configTemplate(pageTemplate);
-        if(PlatformUtil.isLinux()){
-            filePath = filePath.replaceAll("/+|\\\\+","/");
-        }else{
-            filePath = filePath.replaceAll("/+|\\\\+","\\\\");
+        Properties prop = System.getProperties();
+        String os = prop.getProperty("os.name");
+        if (os != null && os.toLowerCase().contains("linux")) {
+            filePath = filePath.replaceAll("/+|\\\\+", "/");
+        } else {
+            filePath = filePath.replaceAll("/+|\\\\+", "\\\\");
         }
         File file = new File(filePath);
         File parentFile = file.getParentFile();
-        if(!parentFile.exists()){
+        if (!parentFile.exists()) {
             parentFile.mkdirs();
         }
+        FileOutputStream fileOutputStream = null;
         try {
-            pageTemplate.renderTo(new FileOutputStream(file));
+            fileOutputStream = new FileOutputStream(file);
+            pageTemplate.renderTo(fileOutputStream);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                fileOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
