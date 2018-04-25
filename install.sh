@@ -15,4 +15,4 @@ mvn clean package -Dmaven.test.skip=true
 kill -9 $(lsof -i:${port} |awk '{print $2}' | tail -n 2)
 
 cd target/
-java -Duser.timezone=GMT+8 -jar sg-server.jar --spring.profiles.active=produce --server.port=${port}
+java -Duser.timezone=GMT+8 -jar guns.jar --spring.profiles.active=produce --server.port=${port}
