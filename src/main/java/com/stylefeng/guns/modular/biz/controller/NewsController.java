@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 /**
@@ -56,6 +57,19 @@ public class NewsController extends BaseController {
     }
 
     /**
+     * 修改页面
+     *
+     * @param model
+     * @param id
+     * @return
+     */
+    @RequestMapping("/edit")
+    public String edit(Model model, @RequestParam("id") String id) {
+        model.addAttribute("id", id);
+        return PREFIX + "/newsEdit.html";
+    }
+
+    /**
      * 查询新闻列表
      *
      * @return
@@ -66,9 +80,7 @@ public class NewsController extends BaseController {
         Example example = new Example(News.class);
         example.setOrderByClause("time desc");
         List<News> list = newsMapper.selectByExample(example);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("list", list);
-        return jsonObject;
+        return list;
     }
 
     /**
@@ -126,6 +138,35 @@ public class NewsController extends BaseController {
     public JSONObject updateNews(News news) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("status", newsMapper.updateByPrimaryKey(news));
+        return jsonObject;
+    }
+
+    /**
+     * 删除新闻
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping("/delNews")
+    @ResponseBody
+    public JSONObject delNews(@RequestParam("id") int id) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status", newsMapper.deleteByPrimaryKey(id));
+        return jsonObject;
+    }
+
+    /**
+     * 查询一条新闻
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping("/selectOne")
+    @ResponseBody
+    public JSONObject selectOne(@RequestParam("id") int id) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status", 1);
+        jsonObject.put("data", newsMapper.selectByPrimaryKey(id));
         return jsonObject;
     }
 

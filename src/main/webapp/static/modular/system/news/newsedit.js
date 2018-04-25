@@ -1,12 +1,3 @@
-var E = window.wangEditor;
-var editor = new E('#editor');
-//editor.customConfig.uploadImgShowBase64 = true;
-editor.customConfig.uploadImgTimeout = 10000;
-editor.customConfig.uploadImgServer = '/news/uploadImg';//上传图片到服务器文件夹
-editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024; //自定义图片大小
-editor.customConfig.uploadFileName = 'file';
-editor.create();
-
 $('.sub-news').click(function () {
     if ($('.news #title').val() === '') {
         alert('请输入文章标题！');
@@ -20,8 +11,9 @@ $('.sub-news').click(function () {
     } else {
         $.ajax({
             type: "post",
-            url: "/news/insertNews",
+            url: "/news/updateNews",
             data: {
+                id: newsId,
                 title: $('.news #title').val(),
                 language: $('.news #language').val(),
                 home: $('.news #ishome').val(),
@@ -40,7 +32,7 @@ $('.sub-news').click(function () {
                     $('.news #draft').val('');
                     $('.news #comment').val('');
                     $('.news #editor .w-e-text').html('');
-                    Feng.success("上传成功!");
+                    Feng.success("提交成功!");
                 } else {
                     alert(res.message);
                 }
@@ -50,3 +42,37 @@ $('.sub-news').click(function () {
         });
     }
 });
+
+(function init() {
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    editor.customConfig.uploadImgTimeout = 10000;
+    editor.customConfig.uploadImgServer = '/news/uploadImg';//上传图片到服务器文件夹
+    editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024; //自定义图片大小
+    editor.customConfig.uploadFileName = 'file';
+    editor.create();
+    $.ajax({
+        type: "post",
+        url: "/news/selectOne",
+        data: {
+            id: newsId
+        },
+        async: false,
+        dataType: 'JSON',
+        success: function (res) {
+            if (res.status === 1) {
+                var data = res.data;
+                $('.news #title').val(data.title);
+                $('.news #language').val(data.language);
+                $('.news #ishome').val(data.home);
+                $('.news #draft').val(data.draft);
+                $('.news #comment').val(data.comment);
+                $('.news #editor .w-e-text').html(data.text);
+            } else {
+                Feng.error("获取数据失败!");
+            }
+        }, error: function (res) {
+            Feng.error("获取数据失败!" + JSON.stringify(res));
+        }
+    });
+})();

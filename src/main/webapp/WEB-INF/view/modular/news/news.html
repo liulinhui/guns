@@ -9,12 +9,13 @@
                 <div class="row row-lg">
                     <div class="col-sm-12">
                         <div class="hidden-xs" id="roleTableToolbar" role="group">
-                            @if(shiro.hasPermission("/news/editNews")){
-                            <#button name="修改" icon="fa-edit" clickFun="News.openEditNews()" space="true"/>
+                            @if(shiro.hasPermission("/news/edit")){
+                            <#button name="修改" icon="fa-edit" clickFun="News.openEdit()" space="true"/>
                             @}
                             @if(shiro.hasPermission("/news/removeNews")){
                             <#button name="删除" icon="fa-remove" clickFun="News.removeNews()" space="true"/>
                             @}
+                            <#button name="刷新" icon="fa-remove" clickFun="News.refresh()" space="true"/>
                         </div>
                         <#table id="newsTable"/>
                     </div>
