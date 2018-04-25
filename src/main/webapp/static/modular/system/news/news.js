@@ -75,9 +75,9 @@ News.openEdit = function () {
     }
 };
 
-News.watch=function () {
+News.watch = function () {
     if (this.check()) {
-        window.open("http://www.baidu.com","_blank")
+        window.open("http://www.healthtracechain.com/html/newsDetail.html?id=" + this.seItem.id, "_blank")
     }
 }
 
