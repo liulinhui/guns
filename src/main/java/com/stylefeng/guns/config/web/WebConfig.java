@@ -95,15 +95,15 @@ public class WebConfig {
         return new DefaultPointcutAdvisor(druidStatPointcut(), druidStatInterceptor());
     }
 
-    /**
-     * xssFilter注册
-     */
-    @Bean
-    public FilterRegistrationBean xssFilterRegistration() {
-        FilterRegistrationBean registration = new FilterRegistrationBean(new XssFilter());
-        registration.addUrlPatterns("/*");
-        return registration;
-    }
+//    /**
+//     * xssFilter注册
+//     */
+//    @Bean
+//    public FilterRegistrationBean xssFilterRegistration() {
+//        FilterRegistrationBean registration = new FilterRegistrationBean(new XssFilter());
+//        registration.addUrlPatterns("/*");
+//        return registration;
+//    }
 
     /**
      * RequestContextListener注册

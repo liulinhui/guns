@@ -113,5 +113,5 @@ logging:
   file: guns.log
 
 upload:
-  path: /home/liulh/Documents/htcImages/  #文件存储nginx的静态服务器位置
-  url: http://127.0.0.1/htcImages/        #图片访问链接
+  path: /usr/share/nginx/html/newsImg/htcImages/  #文件存储nginx的静态服务器位置
+  url: http://www.healthtracechain.com/htcImages/        #图片访问baseUrl

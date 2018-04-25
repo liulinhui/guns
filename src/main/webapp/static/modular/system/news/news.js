@@ -73,6 +73,12 @@ News.openEdit = function () {
             content: Feng.ctxPath + '/news/edit?id=' + this.seItem.id
         });
     }
+};
+
+News.watch=function () {
+    if (this.check()) {
+        window.open("http://www.baidu.com","_blank")
+    }
 }
 
 News.refresh = function () {
