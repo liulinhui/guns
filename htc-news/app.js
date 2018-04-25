@@ -1,6 +1,5 @@
 var createError = require('http-errors');
 var express = require('express');
-var path = require('path');
 var http = require('http');
 var debug = require('debug')('htc-news:server');
 var cookieParser = require('cookie-parser');
@@ -16,10 +15,6 @@ var connection = mysql.createConnection({
 connection.connect();
 
 var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -77,7 +72,7 @@ app.use(function (err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.render('error');
+    res.send(err);
 });
 
 var port = normalizePort(process.env.PORT || '3000');
