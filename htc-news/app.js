@@ -38,8 +38,8 @@ app.get('/newsInterface/list', function (req, res) {
         count: 0
     };
     var language = req.query.language;
-    var page = req.query.page;
-    var limit = req.query.limit;
+    var page = req.query.page || 1;
+    var limit = req.query.limit || 10;
     var offset = (page - 1) * limit;
     connection.query(`select id,title,draft,time from news where language='${language}' order by time desc limit ${offset},${limit};`, function (err, result, fileds) {
         if (err) res.send(err);
