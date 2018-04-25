@@ -18,3 +18,6 @@ logs/
 
 *velocity.log*
 
+node_modules
+
+package-lock.json
