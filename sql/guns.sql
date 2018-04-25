@@ -174,7 +174,7 @@ DROP TABLE IF EXISTS `news`;
 CREATE TABLE `news` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '新闻主键',
   `language` char(8) NOT NULL DEFAULT 'en' COMMENT '语言',
-  `title` varchar(50) NOT NULL DEFAULT '' COMMENT '新闻标题',
+  `title` varchar(500) NOT NULL DEFAULT '' COMMENT '新闻标题',
   `draft` varchar(500) NOT NULL DEFAULT '' COMMENT '新闻摘要',
   `text` text NOT NULL COMMENT '新闻正文',
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发布时间',
