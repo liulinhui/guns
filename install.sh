@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+cd guns/
 git pull
 
 #默认8080端口
