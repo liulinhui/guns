@@ -1,15 +1,15 @@
 $('.sub-news').click(function () {
     if ($('.news #title').val() === '') {
-        alert('请输入文章标题！');
-        return false;
-    } else if ($('.news #realtime input').html().length === 11) {
-        alert('请输入发布时间！');
+        Feng.error("请输入标题!");
         return false;
     } else if ($('.news #editor .w-e-text').html().length === 11) {
-        alert('请输入文章内容！');
+        Feng.error("请输入文章内容！");
+        return false;
+    } else if (!$('.news #realtime').val()) {
+        Feng.error("请输入发布时间！");
         return false;
     } else if ($('.news #draft').val().length === 0) {
-        alert('请输入文章摘要！');
+        Feng.error("请输入文章摘要！");
         return false;
     } else {
         $.ajax({
