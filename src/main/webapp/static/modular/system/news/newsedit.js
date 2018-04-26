@@ -2,6 +2,9 @@ $('.sub-news').click(function () {
     if ($('.news #title').val() === '') {
         alert('请输入文章标题！');
         return false;
+    } else if ($('.news #realtime input').html().length === 11) {
+        alert('请输入发布时间！');
+        return false;
     } else if ($('.news #editor .w-e-text').html().length === 11) {
         alert('请输入文章内容！');
         return false;
@@ -16,6 +19,7 @@ $('.sub-news').click(function () {
                 id: newsId,
                 title: $('.news #title').val(),
                 language: $('.news #language').val(),
+                realtime: $('.news #realtime').val(),
                 home: $('.news #ishome').val(),
                 draft: $('.news #draft').val(),
                 comment: $('.news #comment').val(),
@@ -29,6 +33,7 @@ $('.sub-news').click(function () {
                     $('.news #title').val('');
                     $('.news #language').val('');
                     $('.news #ishome').val('');
+                    $('.news #realtime').val('');
                     $('.news #draft').val('');
                     $('.news #comment').val('');
                     $('.news #editor .w-e-text').html('');

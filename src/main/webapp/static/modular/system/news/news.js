@@ -16,7 +16,7 @@ News.initColumn = function () {
         {title: '语言', field: 'language', align: 'center', valign: 'middle', sortable: true},
         {title: '标题', field: 'title', align: 'center', valign: 'middle', sortable: true},
         {title: '摘要', field: 'draft', visible: false, align: 'center', valign: 'middle', sortable: true},
-        {title: '发布时间', field: 'time', align: 'center', valign: 'middle', sortable: true},
+        {title: '发布时间', field: 'realtime', align: 'center', valign: 'middle', sortable: true},
         {title: '首页展示', field: 'home', align: 'center', valign: 'middle', sortable: true},
         {title: '备注', field: 'comment', visible: false, align: 'center', valign: 'middle', sortable: true},
         {title: '全文', field: 'text', visible: false, align: 'center', valign: 'middle', sortable: true}];

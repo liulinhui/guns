@@ -9,13 +9,16 @@ editor.create();
 
 $('.sub-news').click(function () {
     if ($('.news #title').val() === '') {
-        alert('请输入文章标题！');
+        Feng.error("请输入标题!");
         return false;
     } else if ($('.news #editor .w-e-text').html().length === 11) {
-        alert('请输入文章内容！');
+        Feng.error("请输入文章内容！");
+        return false;
+    } else if (!$('.news #realtime').val()) {
+        Feng.error("请输入发布时间！");
         return false;
     } else if ($('.news #draft').val().length === 0) {
-        alert('请输入文章摘要！');
+        Feng.error("请输入文章摘要！");
         return false;
     } else {
         $.ajax({
@@ -25,6 +28,7 @@ $('.sub-news').click(function () {
                 title: $('.news #title').val(),
                 language: $('.news #language').val(),
                 home: $('.news #ishome').val(),
+                realtime: $('.news #realtime').val(),
                 draft: $('.news #draft').val(),
                 comment: $('.news #comment').val(),
                 text: $('.news #editor .w-e-text').html()
@@ -37,12 +41,14 @@ $('.sub-news').click(function () {
                     $('.news #title').val('');
                     $('.news #language').val('');
                     $('.news #ishome').val('');
+                    $('.news #realtime').val('');
                     $('.news #draft').val('');
                     $('.news #comment').val('');
                     $('.news #editor .w-e-text').html('');
                     Feng.success("上传成功!");
                 } else {
-                    alert(res.message);
+                    Feng.error("上传失败！");
+                    console.error(res.message);
                 }
             }, error: function (res) {
                 console.log(res);

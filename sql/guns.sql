@@ -181,7 +181,8 @@ CREATE TABLE `news` (
   `title` varchar(500) NOT NULL DEFAULT '' COMMENT '新闻标题',
   `draft` varchar(500) NOT NULL DEFAULT '' COMMENT '新闻摘要',
   `text` text NOT NULL COMMENT '新闻正文',
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发布时间',
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '新闻提交时间',
+  `realtime` VARCHAR(20) NOT NULL COMMENT '新闻发布时间',
   `home` char(1) NOT NULL DEFAULT '0' COMMENT '是否在首页显示 ,0:不显示  1：首页显示',
   `comment` varchar(300) DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`id`)
