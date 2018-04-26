@@ -2,4 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.stylefeng.guns.common.persistence.dao.NewsMapper">
 
+    <select id="selectList" parameterType="int" resultType="com.stylefeng.guns.common.persistence.model.News">
+      SELECT * FROM news limit #{offset},#{limit}
+    </select>
+
+    <select id="countAllList" resultType="long">
+        SELECT COUNT(*) FROM news;
+    </select>
 </mapper>

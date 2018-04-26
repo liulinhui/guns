@@ -89,7 +89,7 @@ News.refresh = function () {
 $(function () {
     var defaultColunms = News.initColumn();
     var table = new BSTable(News.id, "/news/list", defaultColunms);
-    table.setPaginationType("client");
+    table.setPaginationType("server");
     table.init();
     News.table = table;
 });

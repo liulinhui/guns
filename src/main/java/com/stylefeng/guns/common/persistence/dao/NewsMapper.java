@@ -1,6 +1,7 @@
 package com.stylefeng.guns.common.persistence.dao;
 
 import com.stylefeng.guns.common.persistence.model.News;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
 
@@ -16,4 +17,7 @@ import java.util.List;
 @Repository
 public interface NewsMapper extends Mapper<News> {
 
+    List<News> selectList(@Param("offset") int offset, @Param("limit") int limit);
+
+    long countAllList();
 }

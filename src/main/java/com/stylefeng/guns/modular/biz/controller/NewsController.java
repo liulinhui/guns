@@ -76,11 +76,14 @@ public class NewsController extends BaseController {
      */
     @RequestMapping("/list")
     @ResponseBody
-    public Object list() {
-        Example example = new Example(News.class);
-        example.setOrderByClause("time desc");
-        List<News> list = newsMapper.selectByExample(example);
-        return list;
+    public Object list(@RequestParam(value = "offset", defaultValue = "0") int offset,
+                       @RequestParam(value = "limit", defaultValue = "14") int limit) {
+        List<News> list = newsMapper.selectList(offset, limit);
+        long count = newsMapper.countAllList();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("rows", list);
+        jsonObject.put("total", count);
+        return jsonObject;
     }
 
     /**
