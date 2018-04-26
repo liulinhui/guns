@@ -41,7 +41,7 @@ app.get('/newsInterface/list', function (req, res) {
     var page = req.query.page || 1;
     var limit = req.query.limit || 10;
     var offset = (page - 1) * limit;
-    connection.query(`select id,title,draft,time from news where language='${language}' order by time desc limit ${offset},${limit};`, function (err, result, fileds) {
+    connection.query(`select id,title,draft,realtime,time from news where language='${language}' order by time desc limit ${offset},${limit};`, function (err, result, fileds) {
         if (err) res.send(err);
         else {
             data.data = result;
